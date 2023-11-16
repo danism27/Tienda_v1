@@ -21,10 +21,14 @@ public class Producto implements Serializable{//serialización funciona para alm
     @Id//tabla producto tiene una llave o identificador que es el ID
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Los valores generados que tipo de estratagia utilizan, identico = sea igual en la BD y en la clase
     @Column(name="id_producto")//Decir cual es el nombre de la columna en la base de datos.
-    private long idProducto;
+    private long idProducto; // 
     private String descripcion;
-    private String rutaImagen;
-    private boolean activo;
+    private String rutaImagen; 
+    private boolean activo; 
+    private Categoria categoria; 
+    private String detalle; 
+    private double precio; 
+    private int existencias; 
 
     public Producto() {
     }

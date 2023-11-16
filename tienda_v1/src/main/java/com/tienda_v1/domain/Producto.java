@@ -1,44 +1,39 @@
-
 package com.tienda_v1.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name="producto")
+public class Producto implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-public class Producto implements Serializable{//serialización funciona para almacenar ciertos datos en el disco
-    
-    private static final long serialVersionUID = 1L; //para poder hacer el ciclo de la sumatoria del idProducto
-    
-    @Id//tabla producto tiene una llave o identificador que es el ID
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//Los valores generados que tipo de estratagia utilizan, identico = sea igual en la BD y en la clase
-    @Column(name="id_producto")//Decir cual es el nombre de la columna en la base de datos.
-    private long idProducto; // 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_producto")
+    private Long idProducto;
     private String descripcion;
-    private String rutaImagen; 
-    private boolean activo; 
-    private Categoria categoria; 
-    private String detalle; 
-    private double precio; 
-    private int existencias; 
+    private String detalle;
+    private double precio;
+    private int existencias;
+    private String rutaImagen;
+    private boolean activo;
+
+    @ManyToOne
+    @JoinColumn(name="id_categoria")
+    Categoria idCategoria;
 
     public Producto() {
     }
 
-    public Producto(String descripcion, boolean activo) {
+    public Producto(String descripcion, String detalle, double precio, int existencias, String rutaImagen, boolean activo) {
         this.descripcion = descripcion;
+        this.detalle = detalle;
+        this.precio = precio;
+        this.existencias = existencias;
+        this.rutaImagen = rutaImagen;
         this.activo = activo;
     }
-    
-    
-    
-    
 }
